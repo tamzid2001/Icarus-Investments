@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Majors</title>
+	<script src="auth.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+	var obj = {"q":[]};
+	if(localStorage.getItem("addedquotes") == null){
+	localStorage.setItem("addedquotes", JSON.stringify(obj));
+}
+(function () {
+    if (window.addEventListener) {
+        window.addEventListener('load', run, false);
+    } else if (window.attachEvent) {
+        window.attachEvent('onload', run);
+    }
+
+    function run() {
+		var t = document.getElementById('myTable');
+        var rows = t.rows; //rows collection - https://developer.mozilla.org/en-US/docs/Web/API/HTMLTableElement
+		for (var i=0; i<rows.length; i++) {
+			rows[i].onclick = function (event) {
+				//event = event || window.event; // for IE8 backward compatibility
+				//console.log(event, this, this.outerHTML);
+				if (this.parentNode.nodeName == 'THEAD') {
+					return;
+				}
+        
+				var cells = this.cells; //cells collection
+        if(cells[0].childNodes[0].nodeName == 'BUTTON'){
+				//var f1 = document.getElementById('pair');
+				var myObj = JSON.parse(localStorage.getItem("addedquotes"));
+				var c = myObj.q
+				c.push(cells[1].innerHTML);
+				console.log(c);
+				localStorage.setItem("addedquotes", JSON.stringify(myObj));
+				//f1.value = cells[1].innerHTML;
+        }
+        
+			};
+		}
+    }
+
+})();
+</script>
+</head>
+<body>
+	<script type="text/javascript">
+var pairs = ["EUR/USD","GBP/USD","USD/CAD", "USD/JPY", "NZD/USD","AUD/USD","USD/CHF", "EUR/GBP","EUR/JPY","EUR/CAD","EUR/NZD","EUR/AUD","EUR/CHF", "GBP/JPY","GBP/CAD", "GBP/CHF", "GBP/NZD", "GBP/AUD", "AUD/CAD","AUD/CHF","AUD/JPY","AUD/NZD", "NZD/CAD","NZD/CHF","NZD/JPY", "CAD/CHF","CAD/JPY", "CHF/JPY"];
+function createTable(tableData) {
+  var table = document.createElement('table');
+  var tableBody = document.createElement('tbody');
+  table.setAttribute("id","myTable")
+
+  tableData.forEach(function(rowData) {
+    var row = document.createElement('tr');
+
+    
+      var cell = document.createElement('td');
+      cell.appendChild(document.createTextNode(rowData));
+      cell.setAttribute("id", "pair");
+      var cell2 = document.createElement('td');
+      var para = document.createElement("button");
+		var node = document.createTextNode("+");
+	//para.setAttribute("onClick", "myFunction(this)");
+	para.appendChild(node);
+	cell2.appendChild(para);
+  row.appendChild(cell2);
+      row.appendChild(cell);
+    
+
+    tableBody.appendChild(row);
+  });
+
+  table.appendChild(tableBody);
+  document.body.appendChild(table);
+}
+createTable(pairs);
+	</script>
+<div>
+	<a href="addquote.html" id="back"> < </a>
+
+</div>
+<div>
+</div>
+</body>
+</html>

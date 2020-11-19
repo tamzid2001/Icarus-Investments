@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Settings</title>
+	<style type="text/css">
+		.btn {
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Green */
+.success {
+  border-color: #4CAF50;
+  color: green;
+}
+
+.success:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Blue */
+.info {
+  border-color: #2196F3;
+  color: dodgerblue;
+}
+
+.info:hover {
+  background: #2196F3;
+  color: white;
+}
+
+/* Orange */
+.warning {
+  border-color: #ff9800;
+  color: orange;
+}
+
+.warning:hover {
+  background: #ff9800;
+  color: white;
+}
+
+/* Red */
+.danger {
+  border-color: #f44336;
+  color: red;
+}
+
+.danger:hover {
+  background: #f44336;
+  color: white;
+}
+
+/* Gray */
+.default {
+  border-color: #e7e7e7;
+  color: black;
+}
+
+.default:hover {
+  background: #e7e7e7;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background: #f1f1f1;
+  color: black;
+}
+
+.navbar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+	</style>
+</head>
+<body>
+<h1>Settings</h1>
+
+<a href="addacc.html" class="btn success">Add Account</a>
+<button class="btn info">Charts</button>
+<button class="btn warning">Payment History</button>
+<button class="btn danger">Transfers</button>
+<button class="btn default">Help</button>
+<button class="btn default">About</button>
+<a href="login.html" class="logged-out" id="logout">Logout</a>
+
+<div class="navbar">
+  <a href="quotes.html" class="active">Quotes</a>
+  <a href="chartpage.html">Charts</a>
+  <a href="equity.html">Equity</a>
+  <a href="algo.html">Algo</a>
+  <a href="settings.html">Settings</a>
+</div>
+<script src="auth.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

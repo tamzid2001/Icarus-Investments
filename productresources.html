@@ -1,0 +1,135 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
+</style>
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+<p>Frequently Asked Questions</p>
+<button class="collapsible">Do we follow all forex-related laws and regulations in the US?</button>
+<div class="content">
+<p>Yes. Our product follows all laws and regulations including...</p>
+</div>
+
+<button class="collapsible">What markets does this work with?</button>
+<div class="content">
+<p>Our algorithm works on all major pairs(EURUSD,USDCAD,GBPUSD,USDJPY,AUDUSD,NZDUSD) and their cross pairs.Refer to our Backtests page for an in depth view of all available markets.</p>
+</div>
+<button class="collapsible">Is this friendly for beginners?</button>
+<div class="content">
+<p>The is no trading experience required to succesfully use our service as it is set to work on auto-pilot. This is not a magic bot that will make you riches but a more realistic and reliable way to make consitent income at the end of the day.</p>
+</div>
+
+<button class="collapsible">Will it trade for me automatically?</button>
+<div class="content">
+<p>The is no trading experience required to succesfully use our service as it is set to work on auto-pilot. This is not a magic bot that will make you riches but a more realistic and reliable way to make consitent income at the end of the day.</p>
+</div>
+
+<button class="collapsible">What platforms can I use this on?</button>
+<div class="content">
+<p>Unfortunately, our service only runs on the MetaTrader 4 platform. Our team is working to develop a MetaTrader 5 version that will be released soon.</p>
+</div>
+
+<p>How To Setup Icarus Investment Services</p>
+<button class="collapsible">User Setup Guide</button>
+<div class="content">
+<p>Watch this video to setup Icarus Investment Services on MT4 platform.</p>
+</div>
+<button class="collapsible">How to install updates?</button>
+<div class="content">
+<p>All updates will be emailed to the user.</p>
+</div>
+<button class="collapsible">Risk Management</button>
+<div class="content">
+<p>Default risk settings are set at 1% per trade. You cannot open trades with risk over 50%.</p>
+</div>
+<p>Product Features</p>
+<button class="collapsible">Account Dashboard</button>
+<div class="content">
+<p>View your account details on any chart.</p>
+</div>
+<button class="collapsible">Open Section 2</button>
+<div class="content">
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+<button class="collapsible">Open Section 3</button>
+<div class="content">
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+<p>Product Questions</p>
+<button class="collapsible">Account Dashboard</button>
+<div class="content">
+<p>View your account details on any chart.</p>
+</div>
+<button class="collapsible">Open Section 2</button>
+<div class="content">
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+<button class="collapsible">Open Section 3</button>
+<div class="content">
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+<p>Orders</p>
+<button class="collapsible">Is there a free trial?</button>
+<div class="content">
+<p>View your account details on any chart.</p>
+</div>
+<button class="collapsible">What is your cancellation policy?</button>
+<div class="content">
+<p>You can cancel your subscription at anytime. Simply login to your account and unsubscribe under 'My Account'.</p>
+</div>
+<button class="collapsible">Will the price of my subscription ever change?</button>
+<div class="content">
+<p>No, we will never change the your subscription. The price of your subscription will be kept the same forever after you have signed up. All members will keep the same subscription fee regardless of any price changes we do in the future.</p>
+</div>
+<button class="collapsible">How long does it take to get access after purchasing?</button>
+<div class="content">
+<p>After signing up, please allow a couple minutes for our servers to send you an account invite to create an account and get the desired software and license key. All matters related to your subscription can be configured under 'My Account'. For any other questions please contact customer support.</p>
+</div>

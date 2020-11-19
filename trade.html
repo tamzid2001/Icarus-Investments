@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Trade</title>
+</head>
+<body>
+	<a href="chartpage.html"><</a>
+	<h3 id="currentpair">FX PAIR</h3>
+<div style="padding: 20px; display: flex; flex-direction: column; width: 200px">
+  <label for="order-type" style="margin-bottom: 5px">Order Type</label>
+  <select id="order-type" name="order-type">
+    <option value="market">Market Execution</option>
+    <option value="buy_limit">Buy Limit</option>
+    <option value="sell_limit">Sell Limit</option>
+    <option value="buy_stop">Buy Stop</option>
+    <option value="sell_stop">Sell Stop</option>
+  </select>
+  <label for="lot-size" style="margin-bottom: 5px">Lot Size</label>
+  <input id="lot-size" type="number" step="0.01" min="0" max="1000000" style="margin-bottom: 10px">
+  <label for="price" style="margin-bottom: 5px">Price</label>
+  <input id="price" type="number" min="0" max="1000000" style="margin-bottom: 10px">
+  <label for="take-profit" style="margin-bottom: 5px">Take Profit</label>
+  <input id="take-profit" type="number" min="0" max="1000000" style="margin-bottom: 10px">
+  <label for="stop-loss" style="margin-bottom: 5px">Stop Loss</label>
+  <input id="stop-loss" type="number" min="0" max="1000000" style="margin-bottom: 10px">
+  <button onclick="onSubmit()">Place Trade</button>
+</div>
+<button id="buybutton" class="b" onclick="buy()">Buy</button>
+<button id="sellbutton" class="b" onclick="sell()">Sell</button>
+<div id='info' style="margin-top: 20px"></div>
+<script src="https://unpkg.com/metaapi.cloud-sdk/index.js"></script>
+<script type="text/javascript">
+function sb() {
+	var e = document.getElementById("order-type");
+	var o = e.value;
+  var x = document.getElementById("buybutton");
+  var y = document.getElementById("sellbutton");
+  var z = document.getElementById("price");
+  if (o == "market") {
+    x.style.display = "block";
+    y.style.display = "block";
+    z.style.display = "none";
+  } else {
+    x.style.display = "none";
+    y.style.display = "none";
+    z.style.display = "block";
+  }
+}
+	const token = 'eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI4YWYxZGI3ZDBjYzA1NmFkNzVkNmYwY2IzYmQ5ZTVlNiIsInBlcm1pc3Npb25zIjpbXSwiaWF0IjoxNjA1NTE2OTQ3LCJyZWFsVXNlcklkIjoiOGFmMWRiN2QwY2MwNTZhZDc1ZDZmMGNiM2JkOWU1ZTYifQ.Q2mBRdxm3Rz800XGLazxkZhDdZyONZWX-tcfboN4lkKiRpDioCzAP21vZ8krP6HEMJ4SPO51_TT2699h1c9W6VtkagE8dSn1jAetrZULFeomPhpy3lE8N7t7P0_yIGPvUPR19XJ6mWhrav_chB8kX7W6deAE8T0ieAm8zKCe_A47tixoXGkfZUFABHNHQO6gxj4ctfVAfolMmcHYDMYFZYSrCEtPruqCZ1UeRl1fcyRvI_3oD38sDbwowRsy5bhK-Bul6jO448YcodvFmtOBFJCV8VNAKw-Z6DfLDlgWBevTZfc_KBrmP9H3ZvUGroIVdRXg8GagEeIwdPMJ07Hjpu7cy2kz0F2i926Q-SA2gCKtYQqgzDhdZ3zMFj2howEI5cBhl9YUL_8MSAVf3OkrYcqD3JlUPhYYxoNIrpGREq6v2T6YumN8n5adKjdHTQtAP8IAJchDd8ySkkt3BaTPq_zxQ2QGKey04QNSN6NIlVjT03gj24iyhPSHun3OKCP7-g2P8BTL0_d1AW8aJBP9xPsORKEzSGr1BBKmoUtyZtgu8bqesp85Ql5cGDMvjMCLYgAmw2p-4xCp_nLRT9fZTeX65RjZsa6NdsnQGYew1bkrJYTqhd0FV-Rt21EPSIAx69NQxoM8cHqvB4jSioNKQ3kaA3QiBC9jkaxkSmkPAIY';
+
+const infoElement = document.getElementById('info');
+  function log() {
+    if(typeof arguments[1] === 'object'){
+      arguments[1] = JSON.stringify(arguments[1]);
+    }
+    const el = document.createElement('div');
+    el.innerHTML = [].join.call(arguments, ' ');
+    infoElement.appendChild(el);
+    console.log(...arguments);
+  }
+  async function onSubmit(){
+  if (token) {
+      const api = new MetaApi(token);
+      const account = await api.metatraderAccountApi.getAccount('7e6f8f56-f53d-4cba-8f81-cdfd5213bcb8');
+    const connection = await account.connect();
+    await connection.waitSynchronized();
+	log('Submitting pending order');
+		var l = document.getElementById('lot-size').value;
+        var s = document.getElementById('stop-loss').value;
+        var t = document.getElementById('take-profit').value;
+        var p = document.getElementById('price').value;
+        var e = document.getElementById("order-type").value;
+        if(e == "buy_limit"){
+          try {
+          	//pair,volume,price,stoploss,takeprofit
+            let result = await connection.createLimitBuyOrder('GBPUSD', l, p, s, t, {
+                comment: 'comm',
+                clientId: 'TE_GBPUSD_7hyINWqAlE'
+              });
+            log('Trade successful, result code is ' + result.stringCode);
+          } catch (err) {
+            log('Trade failed with result code ' + err.stringCode);
+          }
+      } else if(e == "sell_limit"){
+          try {
+          	//pair,volume,price,stoploss,takeprofit
+            let result = await connection.createLimitSellOrder('GBPUSD', l, p, s, t, {
+                comment: 'comm',
+                clientId: 'TE_GBPUSD_7hyINWqAlE'
+              });
+            log('Trade successful, result code is ' + result.stringCode);
+          } catch (err) {
+            log('Trade failed with result code ' + err.stringCode);
+          }
+      } else if(e == "buy_stop"){
+          try {
+          	//pair,volume,price,stoploss,takeprofit
+            let result = await connection.createStopBuyOrder('GBPUSD', l, p, s, t, {
+                comment: 'comm',
+                clientId: 'TE_GBPUSD_7hyINWqAlE'
+              });
+            log('Trade successful, result code is ' + result.stringCode);
+          } catch (err) {
+            log('Trade failed with result code ' + err.stringCode);
+          }
+      } else if(e == "sell_stop"){
+          try {
+          	//pair,volume,price,stoploss,takeprofit
+            let result = await connection.createStopSellOrder('GBPUSD', l, p, s, t, {
+                comment: 'comm',
+                clientId: 'TE_GBPUSD_7hyINWqAlE'
+              });
+            log('Trade successful, result code is ' + result.stringCode);
+          } catch (err) {
+            log('Trade failed with result code ' + err.stringCode);
+          }
+      }
+      }
+  }
+
+async function buy(){
+  if (token) {
+      const api = new MetaApi(token);
+      const account = await api.metatraderAccountApi.getAccount('7e6f8f56-f53d-4cba-8f81-cdfd5213bcb8');
+    const connection = await account.connect();
+    await connection.waitSynchronized();
+	log('Submitting buy order');
+          try {
+          	//pair,volume,price,stoploss,takeprofit
+            let result = await connection.createBuyOrder('GBPUSD', l, s, t, {
+                comment: 'comm',
+                clientId: 'TE_GBPUSD_7hyINWqAlE'
+              });
+            log('Trade successful, result code is ' + result.stringCode);
+          } catch (err) {
+            log('Trade failed with result code ' + err.stringCode);
+          }
+      }
+  }
+  async function sell(){
+  if (token) {
+      const api = new MetaApi(token);
+      const account = await api.metatraderAccountApi.getAccount('7e6f8f56-f53d-4cba-8f81-cdfd5213bcb8');
+    const connection = await account.connect();
+    await connection.waitSynchronized();
+	log('Submitting sell order');
+
+          try {
+          	//pair,volume,price,stoploss,takeprofit
+            let result = await connection.createSellOrder('GBPUSD', l, s, t, {
+                comment: 'comm',
+                clientId: 'TE_GBPUSD_7hyINWqAlE'
+              });
+            log('Trade successful, result code is ' + result.stringCode);
+          } catch (err) {
+            log('Trade failed with result code ' + err.stringCode);
+          }
+      }
+  }
+  setInterval(sb,1000);
+</script>
+</body>
+</html>
