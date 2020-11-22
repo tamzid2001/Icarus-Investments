@@ -13,10 +13,11 @@ We are a software company that provides a service(SaSS).
 Feeling Risky?
 
 Meet LUCFR, our advanced charting algorithm. 
+- Emotionless & To The Point
 - Perfect for quick intreday scalps, works on M5 timeframes and up
 - LUCFR will help manage your trades - Shopisticaled Trade Management System - BUY SELL SIGNALS - EXIT LOSING TRADES EARLY && RECOVER LOSSES - RISK MANAGEMENT 
 
-His brother disagrees
+Better Not Risk it!
 
 Meet MICHEL, our advanced automated trading algorithm
 - Convenietely connect to any brokerage account 
@@ -64,7 +65,21 @@ Theme:
   - Style Buttons the same for Subscription Page
   - Background color is white
   - Quotes Page is a list with text annotations above/below main text
-  - 
+  
+Current Features:
+-You can add your brokerage account
+-You can run MCHEL by press sync
+-You can add pairs from majors.html to qoutes.html
+-You can view equity of account graph of an account(You can see my old personal account, this includes my gambling mistakes, wins and withdrawals
+
+Backend:
+-adding LUCFR
+-connect payment system
+-connect all nessacary servers
+-create ADMIN CONTROL PANEL - logs any server errors and reports it back to me
+-database and server security
+-stress tests
+  -clones 100 accounts and tests our servers
 
 Goals:
 
