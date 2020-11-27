@@ -93,19 +93,38 @@
   background-color: #4CAF50;
   color: white;
 }
+
+.container {
+	float: left;
+
+}
+a {
+	display:block;
+}
+
+button {
+	display:block;
+}
+
 	</style>
+
 </head>
 <body>
 <h1>Settings</h1>
+<div class="account">
 
+
+</div>
+<div class = "container">
 <a href="addacc.html" class="btn success">Add Account</a>
+<button class="btn danger" id="remove">Remove Account</a>
 <button class="btn info">Charts</button>
-<button class="btn warning">Payment History</button>
+<button class="btn warning" id="">Payment History</button>
 <button class="btn danger">Transfers</button>
-<button class="btn default">Help</button>
-<button class="btn default">About</button>
-<a href="login.html" class="logged-out" id="logout">Logout</a>
-
+<a href="help.html" class="btn default">Help</button>
+<a href="about.html" class="btn default">About</button>
+<a href="login.html" class="logged-out btn danger" id="logout">Logout</a>
+</div>
 <div class="navbar">
   <a href="quotes.html" class="active">Quotes</a>
   <a href="chartpage.html">Charts</a>
@@ -113,7 +132,33 @@
   <a href="algo.html">Algo</a>
   <a href="settings.html">Settings</a>
 </div>
-<script src="auth.js"></script>
-<script src="index.js"></script>
+<script src="settings.js"></script>
+<script src="https://unpkg.com/metaapi.cloud-sdk/index.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-functions.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+    apiKey: "AIzaSyD3l1JFtwRe8YtF69WZAcy0hFQS0YHlCbc",
+    authDomain: "alpine-figure-293021.firebaseapp.com",
+    databaseURL: "https://alpine-figure-293021.firebaseio.com",
+    projectId: "alpine-figure-293021",
+    storageBucket: "alpine-figure-293021.appspot.com",
+    messagingSenderId: "263585462694",
+    appId: "1:263585462694:web:b310eae69593a5f06ef767",
+    measurementId: "G-8Z8056XBX9"
+  };
+    firebase.initializeApp(config);
+
+    // make auth and firestore references
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    const functions = firebase.functions();
+
+    // update firestore settings
+    db.settings({ timestampsInSnapshots: true });
+  </script>
 </body>
 </html>

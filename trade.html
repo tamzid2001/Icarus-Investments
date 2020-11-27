@@ -127,7 +127,7 @@ async function buy(){
 	log('Submitting buy order');
           try {
           	//pair,volume,price,stoploss,takeprofit
-            let result = await connection.createBuyOrder('GBPUSD', l, s, t, {
+            let result = await connection.createMarketBuyOrder('GBPUSD', l, s, t, {
                 comment: 'comm',
                 clientId: 'TE_GBPUSD_7hyINWqAlE'
               });
@@ -147,7 +147,7 @@ async function buy(){
 
           try {
           	//pair,volume,price,stoploss,takeprofit
-            let result = await connection.createSellOrder('GBPUSD', l, s, t, {
+            let result = await connection.createMarketSellOrder('GBPUSD', l, s, t, {
                 comment: 'comm',
                 clientId: 'TE_GBPUSD_7hyINWqAlE'
               });
@@ -159,5 +159,6 @@ async function buy(){
   }
   setInterval(sb,1000);
 </script>
+<script src="auth.js"></script>
 </body>
 </html>
